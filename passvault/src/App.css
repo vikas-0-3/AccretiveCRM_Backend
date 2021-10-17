@@ -1,0 +1,51 @@
+body {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#colordiv, #side_nav {
+  background-color: black;
+  height: 100vh;
+}
+
+.btn-outline-light {
+  border-radius: 50px;
+}
+
+#links {
+  cursor: pointer;
+}
+#links p {
+  text-decoration: none;
+}
+#links p:hover {
+  transform: scale(1.1);
+  transition: 0.3s linear;
+  background-color: white;
+  color: black;
+  font-weight: bold;
+}
+
+#password_cards {
+  box-shadow: 0 10px 6px 0 gray;
+}
+
+#password_cards:hover {
+  cursor: pointer;
+  transform: scale(1.06);
+  transition: 0.2s linear;
+}
+
+.maindiv {
+  overflow-y: auto;
+  height: 90vh;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+
+.maincontactdiv {
+  overflow-y: auto;
+  height: 80vh;
+}
