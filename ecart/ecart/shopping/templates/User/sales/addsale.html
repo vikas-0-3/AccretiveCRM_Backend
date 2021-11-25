@@ -1,0 +1,146 @@
+{% load static %}
+{% include 'User/head.html' %}
+
+
+<div class="main">
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <div class="container-fluid card" style="background-color: white;">
+            <h3 class="bg-light p-2">Add Sale</h3>
+
+            <div class="card">
+                <div class="container-fluid">
+                    <form method = "post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                    <div class="row">
+                    
+                        <div class="col-sm">
+                            <h5>Sale Details</h5>
+                            <hr>
+                            <input type="hidden" name="addedby" value="{{ request.user.id }}">
+                                <div class="form-group">
+                                    <label for="quotation">Quotation</label>
+                                    <select class="form-control form-control-lg" name="quotation" id="quotation">
+                                        <option>Select quotation</option>
+                                        {% for da in qdata %}
+                                            <option value="{{ da.id }}" data-foo="{{ da.grand_total }}">{{ da.created_at }} - {{ da.title }} </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="vendor">Vendor</label>
+                                                <input type="text" class="form-control" name="vendor"  id="vendor" placeholder="vendor details" value="" >
+                                          </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="vendor_price">Vendor Price</label>
+                                            <input type="number" class="form-control" name="vendor_price"  id="vendor_price" placeholder="Vendor Price" value="" onchange="calcprofit()" >
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="payment_mode">Payment Mode</label>
+                                            <select class="form-control form-control-lg" name="payment_mode" id="payment_mode">
+                                                <option value="Cash">Cash</option>
+                                                <option value="Credit Card">Credit Card</option>
+                                                <option value="Debit Card">Debit Card</option>
+                                                <option value="UPI">UPI</option>
+                                                <option value="Cheque">Cheque</option>
+                                            </select>                                        
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="our_price">Our Price</label>
+                                            <input type="text" class="form-control" name="our_price" id="our_price" placeholder="our price" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="payment_status">Payment Status</label>
+                                            <select class="form-control form-control-lg" name="payment_status" id="payment_status">
+                                                <option value="Paid">Paid</option>
+                                                <option value="Due">Due</option>
+                                            </select> 
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="profit">Profit</label>
+                                            <input type="number" class="form-control" name="profit" value="0" id="profit" placeholder="profit" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                  
+                                
+                    
+                                <div class="form-group">
+                                    <label for="deliveryboy">DeliveryBoy</label>
+                                    <select class="form-control form-control-lg" name="deliveryboy" id="deliveryboy">
+                                        {% for da2 in deliveryboydata %}
+                                            <option value="{{ da2.id }}">{{ da2.full_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="order_date">Order Date</label>
+                                            <input type="date" class="form-control" name="order_date" id="order_date" >
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="delivery_date">Delivery Date</label>
+                                            <input type="date" class="form-control" name="delivery_date" id="delivery_date" >
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                           
+                                
+                                
+                                
+                        </div>
+                    
+                    
+                    </div>
+                    <div class="row justify-content-end">
+                        <button type="submit" class="btn btn-secondary m-1">SAVE</button>
+                    </div>
+                    <br>
+                </form>
+                </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+
+$('#quotation').on('change', function() {
+    var pr = $(this).find(':selected').data('foo');
+    $("#our_price").val(pr);
+});
+
+function calcprofit() {
+    var a1 = $("#our_price").val();
+    var a2 = $("#vendor_price").val();
+    $("#profit").val(a1-a2);
+
+}
+</script>
+
+
+{% include 'User/foot2.html' %}

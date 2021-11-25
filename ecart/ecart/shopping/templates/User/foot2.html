@@ -1,0 +1,114 @@
+{% load static %}
+		<!-- END MAIN -->
+		<div class="clearfix"></div>
+		<footer>
+			<div class="container-fluid">
+				<p class="copyright">&copy; 2021 Made with &#x2764; by VIKAS GUPTA</p>
+			</div>
+		</footer>
+	</div>
+	<!-- END WRAPPER -->
+
+	<script type="text/javascript" src="https://cdn.datatables.net/v/bs/jq-3.3.1/jszip-2.5.0/dt-1.10.20/b-1.6.1/b-colvis-1.6.1/b-html5-1.6.1/b-print-1.6.1/datatables.min.js"></script>
+
+
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'vendor/jquery-slimscroll/jquery.slimscroll.min.js' %}"></script>
+	<script src="{% static 'scripts/klorofil-common.js' %}"></script>
+
+	<script type="text/javascript">		
+		function maxWindow() {
+			if ((document.fullScreenElement && document.fullScreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen))
+			{
+				if (document.documentElement.requestFullScreen){
+					document.documentElement.requestFullScreen();
+				}
+				else if (document.documentElement.mozRequestFullScreen){ /* Firefox */
+					document.documentElement.mozRequestFullScreen();
+				}
+				else if (document.documentElement.webkitRequestFullScreen){   /* Chrome, Safari & Opera */
+					document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+				}
+				else if (document.msRequestFullscreen){ /* IE/Edge */
+					document.documentElement.msRequestFullscreen();
+				}
+
+				document.getElementById('togglescreen').classList.remove('fa-expand');
+				document.getElementById('togglescreen').classList.add('fa-compress');
+			}
+			else
+			{
+				if (document.cancelFullScreen){
+					document.cancelFullScreen();
+				}
+				else if (document.mozCancelFullScreen){ /* Firefox */
+					document.mozCancelFullScreen();
+				}
+				else if (document.webkitCancelFullScreen){   /* Chrome, Safari and Opera */
+					document.webkitCancelFullScreen();
+				}
+				else if (document.msExitFullscreen){ /* IE/Edge */
+					document.msExitFullscreen();
+				}
+				document.getElementById('togglescreen').classList.remove('fa-compress');
+				document.getElementById('togglescreen').classList.add('fa-expand');
+				
+			}
+		}
+	</script> 
+
+
+
+    <script>
+
+		$(document).ready(function() {
+
+
+
+			$('#example').DataTable({
+				dom: 'lBfrtip',
+				buttons: [
+					{
+					extend: 'copy',
+					className: 'btn btn-sm mr-2',
+					},
+					{
+					extend: 'excel',
+					className: 'btn btn-sm mr-2',
+					},
+					{
+					extend: 'print',
+					className: 'btn btn-sm mr-2',
+					},
+				],
+			
+			
+			});
+
+
+			$("#myalert").fadeTo(2000, 1000).fadeOut(1000);
+		
+		})
+		
+			</script>
+
+
+
+  
+
+
+
+
+
+
+
+{% if request.get_full_path == "/tasks" %}
+<script src="{% static 'vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js' %}"></script>
+{% endif %}
+
+
+
+
+</body>
+
+</html>

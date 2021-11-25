@@ -1,0 +1,156 @@
+{% load static %}
+{% include 'User/head.html' %}
+
+
+    <script>
+        
+        $(document).ready(function(){
+            $.get({
+                url: '/getMyEvents', 
+                success: function(response){ 
+                    var eventsData = [];
+                    for (var i=0; i < response.data.length; i++)
+                    {
+                        eventsData.push({title : response.data[i].eventtitle, start: response.data[i].eventdate, description: response.data[i].description});
+                    }
+                    
+                    var calendarEl = document.getElementById('calendar');
+                    var calendar = new FullCalendar.Calendar(calendarEl, {
+                        // initialView: 'dayGridMonth',
+                        headerToolbar: {
+                            left: 'prev,next today',
+                            center: 'title',
+                            right: 'dayGridMonth,timeGridWeek,listWeek'
+                        },
+
+                        events: eventsData,
+
+                        eventClick: function(info) {
+                            info.el.style.borderColor = 'orangered'; 
+                            $('#exampleModal1').modal('show');              
+                            $("#date_show").text(info.event.start);
+                            $("#title_show").html(info.event.title);
+                            $("#description_show").html(info.event.extendedProps.description);
+                        },
+
+
+                        dateClick: function(info) {
+                            $('#selecteddate').val(info.dateStr);
+                            $('#exampleModal').modal('show');
+                        }
+                    });
+
+                    calendar.render();
+                }
+            });
+            
+               
+                
+        });
+
+
+
+    </script>
+
+
+
+
+
+<div class="main">
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="panel panel-headline demo-icons">
+                <div class="panel-body ">
+             
+                    <div id='calendar'></div>
+                </div>
+            </div>
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Event Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+            
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+            <div class="row" style="padding: 10px;">
+            
+                <div class="col-sm p-2">
+                    <input type="hidden" name="addedby" value="{{ request.user.id }}">
+                    <hr>
+                        <div class="form-group">
+                            <label for="eventdate">Date</label>
+                            <input type="text" class="form-control" name="eventdate" id="selecteddate" readonly placeholder="eventdate">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="full_name">Title</label>
+                          <input type="text" class="form-control" name="title" id="title" placeholder="title" required>
+                        </div>
+                        
+                    
+                        <div class="form-group">
+                            <label for="company_location">Description</label>
+                            <textarea type="text" class="form-control" name="description" id="description" placeholder="description" rows="5"></textarea>
+                        </div>
+                        
+                        
+                        
+                </div>
+            
+            
+            </div>
+            <div class="form-group justify-content-end">
+                <button type="submit" class="btn btn-primary m-1">SAVE</button>
+            </div>
+            <br>
+        </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Event Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+            <p><b>Title :</b> <span id="title_show"></span></p>
+            <p><b>Date :</b> <span id="date_show"></span></p>
+            <p><b>Description :</b> <span id="description_show"></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% include 'User/foot2.html' %}
