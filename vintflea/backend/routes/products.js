@@ -309,9 +309,43 @@ router.delete('/deleteproduct/:id', async (req, res) => {
             console.error(error.message);
             res.status(500).send("Some error Occured");
         }
+    })
 
 
+    router.get('/totalproductplatform', async (req, res) => {
+        let platforms = await Products.distinct("platform_marketplace");
+        var data = [];
+        var count = [];
+        for (let i = 0; i< platforms.length; i++) {
+            count[i] = await Products.find({ platform_marketplace: platforms[i] }).count();
+        }
+        data.push(platforms);
+        data.push(count);
+        res.json(data);
+    })
 
+    router.get('/totalproductcategories', async (req, res) => {
+        let categories = await Products.distinct("product_category");
+        var data = [];
+        var count = [];
+        for (let i = 0; i< categories.length; i++) {
+            count[i] = await Products.find({ product_category: categories[i] }).count();
+        }
+        data.push(categories);
+        data.push(count);
+        res.json(data);
+    })
+
+    router.get('/totalproductsupplier', async (req, res) => {
+        let suppliers = await Products.distinct("product_supplier");
+        var data = [];
+        var count = [];
+        for (let i = 0; i< suppliers.length; i++) {
+            count[i] = await Products.find({ product_supplier: suppliers[i] }).count();
+        }
+        data.push(suppliers);
+        data.push(count);
+        res.json(data);
     })
 
 
