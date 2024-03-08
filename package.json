@@ -1,0 +1,31 @@
+{
+  "name": "accretivecrm_backend",
+  "version": "1.0.0",
+  "description": "Backend code for Accretive CRM",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vikas-0-3/AccretiveCRM_Backend.git"
+  },
+  "author": "Vikas & Kushagra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vikas-0-3/AccretiveCRM_Backend/issues"
+  },
+  "homepage": "https://github.com/vikas-0-3/AccretiveCRM_Backend#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "express-validator": "^7.0.1",
+    "md5": "^2.3.0",
+    "mongodb": "^6.4.0",
+    "mongoose": "^8.2.1"
+  }
+}
