@@ -12,7 +12,7 @@ app.use(cors())
 
 // AVAILABLE ROUTES
 
-// app.use('/api/auth', require('./routes/auth'))
+app.use('/api/auth', require('./routes/auth'))
 // app.use('/api/dashboard/', require('./routes/dashboard'))
 // app.use('/api/products', require('./routes/products'))
 // app.use('/api/productgold', require('./routes/productgold'))
