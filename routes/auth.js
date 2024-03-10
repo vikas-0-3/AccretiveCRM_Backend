@@ -18,7 +18,7 @@ router.post('/login',
         }
 
         const { username, password } = req.body;
-        try {
+        try {   
             let user = await Auth.findOne({ username });
             if (!user) {
                 return res.status(400).json({ success, error: "user not found !" });
@@ -27,9 +27,16 @@ router.post('/login',
             if (!passwordCompare) {
                 return res.status(400).json({ success, error: "Incorrect Password !" });
             }
+            let userDetails = {};
+            userDetails.user = {
+                "_id" : user._id,
+                "username" : user.username
+            };
+            userDetails.permissions = user.permissions;
+            userDetails.role = user.user_type;
 
             success = true;
-            res.json({ success, user })
+            res.json({ success, userDetails })
         }
         catch (error) {
             console.error(error.message);
