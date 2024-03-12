@@ -1,0 +1,94 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "AccretiveBackend",
+    "dateExported": "2024-03-12T16:16:41.313Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "eb595428-c023-443d-a345-6849002b2bfd",
+            "name": "Auth",
+            "containerId": "",
+            "created": "2024-03-09T16:13:25.956Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "14d52a20-6185-4cfa-a0ee-6cf3354bb840",
+            "name": "User",
+            "containerId": "",
+            "created": "2024-03-12T16:04:27.647Z",
+            "sortNum": 20000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "328d0894-cef6-4839-972d-c07e158b0e94",
+            "colId": "c836c4e8-fa07-4f85-a14e-d2b870dc081d",
+            "containerId": "eb595428-c023-443d-a345-6849002b2bfd",
+            "name": "Login",
+            "url": "{{base_url}}api/auth/login",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-03-09T16:13:40.319Z",
+            "modified": "2024-03-09T16:36:31.261Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"username\": \"vikas@gmail.com\",\n    \"password\": \"vikas03\"\n}",
+                "form": []
+            },
+            "reqType": "post",
+            "tests": []
+        },
+        {
+            "_id": "390d80e1-f25f-4c5b-957d-de83730a513c",
+            "colId": "c836c4e8-fa07-4f85-a14e-d2b870dc081d",
+            "containerId": "14d52a20-6185-4cfa-a0ee-6cf3354bb840",
+            "name": "Create User",
+            "url": "{{base_url}}api/user/createuser",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-03-12T16:04:32.803Z",
+            "modified": "2024-03-12T16:12:36.896Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"first_name\": \"Manoj\",\n    \"last_name\": \"thakur\",\n    \"email\": \"manoj@gmail.com\",\n    \"phone\": 9592480111\n}",
+                "form": []
+            },
+            "reqType": "post",
+            "tests": []
+        },
+        {
+            "_id": "95f08fd5-cf26-4de2-9211-d1c84631aae5",
+            "colId": "c836c4e8-fa07-4f85-a14e-d2b870dc081d",
+            "containerId": "14d52a20-6185-4cfa-a0ee-6cf3354bb840",
+            "name": "Get all users",
+            "url": "{{base_url}}api/user",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-03-12T16:15:36.810Z",
+            "modified": "2024-03-12T16:16:00.095Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "reqType": "post",
+            "tests": []
+        }
+    ]
+}

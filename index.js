@@ -13,9 +13,7 @@ app.use(cors())
 // AVAILABLE ROUTES
 
 app.use('/api/auth', require('./routes/auth'))
-// app.use('/api/dashboard/', require('./routes/dashboard'))
-// app.use('/api/products', require('./routes/products'))
-// app.use('/api/productgold', require('./routes/productgold'))
+app.use('/api/user/', require('./routes/user'))
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port || process.env.PORT}`)
