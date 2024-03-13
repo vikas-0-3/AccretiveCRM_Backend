@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "AccretiveBackend",
-    "dateExported": "2024-03-12T16:16:41.313Z",
+    "dateExported": "2024-03-13T05:28:55.432Z",
     "version": "1.1",
     "folders": [
         {
@@ -17,6 +17,13 @@
             "containerId": "",
             "created": "2024-03-12T16:04:27.647Z",
             "sortNum": 20000
+        },
+        {
+            "_id": "36388484-3c30-4914-ae2b-e842fc96c907",
+            "name": "Navigation",
+            "containerId": "",
+            "created": "2024-03-13T05:14:08.645Z",
+            "sortNum": 30000
         }
     ],
     "requests": [
@@ -71,6 +78,31 @@
             "tests": []
         },
         {
+            "_id": "ad337ef0-574e-4fac-a0da-ef92aa978c08",
+            "colId": "c836c4e8-fa07-4f85-a14e-d2b870dc081d",
+            "containerId": "36388484-3c30-4914-ae2b-e842fc96c907",
+            "name": "CreateNav modules",
+            "url": "{{base_url}}api/nav/creatnavigation",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-03-13T05:14:13.933Z",
+            "modified": "2024-03-13T05:22:29.819Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"module_name\": \"hrms\",\n    \"module_fields\": [\n        {\n          \"id\" : \"dashboard\",\n          \"label\" : \"Dashboard\"\n        },\n        {\n          \"id\" : \"employee\",\n          \"label\" : \"Employee\"\n        },\n        {\n          \"id\" : \"payroll\",\n          \"label\" : \"Payroll\"\n        },\n        {\n          \"id\" : \"leave_request\",\n          \"label\" : \"Leave Request\"\n        },\n        {\n          \"id\" : \"calendar\",\n          \"label\" : \"Calendar\"\n        },\n        {\n          \"id\" : \"attendance\",\n          \"label\" : \"Attendance\"\n        },\n        {\n          \"id\" : \"claim_request\",\n          \"label\" : \"Claim Request\"\n        }\n      ]\n}",
+                "form": []
+            },
+            "reqType": "post",
+            "tests": []
+        },
+        {
             "_id": "95f08fd5-cf26-4de2-9211-d1c84631aae5",
             "colId": "c836c4e8-fa07-4f85-a14e-d2b870dc081d",
             "containerId": "14d52a20-6185-4cfa-a0ee-6cf3354bb840",
@@ -88,6 +120,26 @@
             ],
             "params": [],
             "reqType": "post",
+            "tests": []
+        },
+        {
+            "_id": "20d91826-c3eb-45c4-920b-52e6d339aaf7",
+            "colId": "c836c4e8-fa07-4f85-a14e-d2b870dc081d",
+            "containerId": "36388484-3c30-4914-ae2b-e842fc96c907",
+            "name": "Get all nav modules",
+            "url": "{{base_url}}api/nav/hrms",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-03-13T05:14:18.004Z",
+            "modified": "2024-03-13T05:24:43.289Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "reqType": "get",
             "tests": []
         }
     ]
