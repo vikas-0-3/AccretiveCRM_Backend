@@ -3,25 +3,33 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema(
     {
-        first_name: {
-            type: String,
+        personal_details: {
+            type: Object,
             required: true
         },
-        last_name: {
-            type: String,
+        company_details: {
+            type: Object,
             required: true
         },
-        email: {
-            type: String,
+        documents: {
+            type: Object,
             required: true
         },
-        phone: {
-            type: String,
-            required: true
-        },
-        last_login: {
-            type: Date,
+        previous_employer: {
+            type: Object,
             required: false
+        },
+        family_nominee: {
+            type: Object,
+            required: true
+        },
+        temp: {
+            type: Object,
+            required: false
+        },
+        organization_id: {
+            type: String,
+            required: true
         }
     },
     {

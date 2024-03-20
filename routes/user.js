@@ -1,36 +1,40 @@
 const express = require('express');
 const router = express.Router()
 const User = require('../models/User')
-const { body, validationResult } = require('express-validator');
+// const { body, validationResult } = require('express-validator');
 
 
 
 // Create user Route
 router.post('/createuser',
-    [body('first_name', "Enter a vald first name").isLength({ min: 3 }),
-    body('last_name', "Enter a vald last name").isLength({ min: 3 }),
-    body('email', "Enter a vald Email Id").isEmail(),
-    body('phone', "Enter a vald Phone number").isLength({ min: 10, max: 10 }),
-    ],
+    // [body('first_name', "Enter a vald first name").isLength({ min: 3 }),
+    // body('last_name', "Enter a vald last name").isLength({ min: 3 }),
+    // body('email', "Enter a vald Email Id").isEmail(),
+    // body('phone', "Enter a vald Phone number").isLength({ min: 10, max: 10 }),
+    // ],
     async (req, res) => {
         let success = false
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
-        }
+        // const errors = validationResult(req);
+        // if (!errors.isEmpty()) {
+        //     return res.status(400).json({ errors: errors.array() });
+        // }
 
-        const { first_name, last_name, email, phone } = req.body;
+        const { personal_details, company_details, documents, previous_employer, family_nominee, temp, organization_id } = req.body;
+        var useremail = personal_details.email;
         try {
-            let user = await User.findOne({ email });
+            let user = await User.findOne({ useremail });
             if (user) {
                 return res.status(400).json({ success, error: "user already Exist !" });
             }
 
             user = await User.create({
-                first_name: first_name,
-                last_name: last_name,
-                email: email,
-                phone: phone
+                personal_details: personal_details,
+                company_details: company_details,
+                documents: documents,
+                previous_employer: previous_employer,
+                family_nominee: family_nominee,
+                temp: temp,
+                organization_id: organization_id
             });
 
             success = true;
